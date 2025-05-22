@@ -42,15 +42,10 @@ public class Ventana {
         JFrame frame2 = new JFrame("Simulacion de arroz");
         frame2.setLayout(null);
         frame2.setSize(1100, 500);
-        frame2.setResizable(false);
+        //frame2.setResizable(false);
         frame2.setVisible(true);
         frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //frame2.add(panelResultado);
-
-
-        JLabel labelCuadrado = new JLabel(new ImageIcon("ar/edu/unlu/mstd/cuadrado-222x201.png"));
-        labelCuadrado.setBounds(0,0,500,500);
-
 
 
         JLabel labelCirculo = new JLabel(new ImageIcon("ar/edu/unlu/mstd/circulo.png"));
@@ -59,25 +54,38 @@ public class Ventana {
         JLayeredPane layeredPane1 = new JLayeredPane();
         layeredPane1.setBounds(0,0,500,500);
         layeredPane1.add(labelCirculo,0);
+        JPanel panelCuadrado = new JPanel(new BorderLayout());
+        panelCuadrado.setBackground(Color.GREEN);
+        panelCuadrado.setBounds(50,50,400,400);
+        JPanel panelCirculo = new JPanelCircular(500,Color.CYAN);
+        panelCirculo.setOpaque(false);
+        //panelCirculo.setBackground(Color.CYAN);
+        //panelCirculo.setBounds(100,100,300,300);
+        panelCirculo.setBounds(50,50,400,400);
+
+        //panelCirculo.add(panelCuadrado,BorderLayout.CENTER);
 
         for (int i = 0; i < modelo.getCantEnCirculo(); i++) {
             JLabel labelA = new JLabel("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-            labelA.setBounds(0,0,500,500);
+            //labelA.setBounds(0,0,500,500);
             //labelA.setAlignmentX((float) modelo.getProbArrozCirculo(i));
             //labelA.setAlignmentY((float) modelo.getProbArrozCirculo(i));
-            layeredPane1.add(labelA,i++);
+            panelCuadrado.add(labelA,BorderLayout.SOUTH);
         }
         JLayeredPane layeredPane2 = new JLayeredPane();
-        layeredPane2.add(labelCuadrado,0);
+
         layeredPane2.setBounds(0,0,500,500);
-        layeredPane1.add(layeredPane2,layeredPane1.highestLayer()+1);
+        layeredPane1.add(layeredPane2,1);
+        layeredPane2.add(panelCuadrado,1);
+        panelCuadrado.setOpaque(true);
+        layeredPane2.add(panelCirculo,0);
         for (int i = 0; i < modelo.getCantEnCuadrado(); i++) {
             JLabel labelA = new JLabel("a");
-            labelA.setBounds(0,0,500,500);
+            //labelA.setBounds(20,10,20,20);
             //x = (int) modelo.getProbArrozCuadrado(i) * (panelCuadrado.getWidth() - labelA.getWidth());
             //y = (int) modelo.getProbArrozCuadrado(i) * (panelCuadrado.getHeight() - labelA.getHeight());
             //labelA.setLocation(x,y);
-            layeredPane1.add(labelA,i++);
+            panelCirculo.add(labelA);
         }
 
 
