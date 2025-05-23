@@ -1,4 +1,4 @@
-package ar.edu.unlu.mstd.Ventana;
+package ar.edu.unlu.mstd.Ventana.Panel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,29 +44,26 @@ public class JPanelCircular extends JPanel {
         int centerX = getWidth()/2;
         int centerY = getHeight()/2;
         double angulo = Math.toRadians(posA % 360);
-        int distancia = (posA % radio);
-        int x = (int) ((centerX + distancia * Math.cos(angulo)));
-        int y = (int) ((centerY + distancia * Math.sin(angulo)));
+        double valor = (posA  % 1000);
+        double fraccion = valor / 1000;
+        //calculo una fraccion y le hago raiz porque si calculaba la distancia en base al numero aleatorio
+        //y el radio se generaba una espiral y quedaban muchos lugares espaciados
+        double pos = radio * Math.sqrt(fraccion);
+        //int distancia = (posA % radio);
+        int x = (int) ((centerX + pos * Math.cos(angulo)));
+        int y = (int) ((centerY + pos * Math.sin(angulo)));
         comp.setBounds(x,y,5,5);
         return super.add(comp);
     }
     public Component addFCirculo(Component comp,int posA) {
-        //int [] angulosPosibles = {45,135,225,315};
-
         int radio = Math.min(getWidth(),getHeight()) / 2;
-        int diferenciaX = getWidth() - radio;
-        int diferenciaY = getHeight() - radio;
         int centerX = getWidth()/2;
         int centerY = getHeight()/2;
+        //calculo la distancia total del cuadrado
         int maxDistancia = (int) (Math.sqrt((getWidth() * getWidth() + getHeight() * getHeight())) / 2);
-        //int area = (int) ((getWidth() * getHeight())- (Math.PI * Math.pow(radio,2)));
-        int maxX = Math.min(centerX, getWidth() - centerX);
-        int maxY = Math.min(centerY, getHeight() - centerY);
-        int distanciaMax = Math.min(maxX, maxY);
-        //double angulo = Math.toRadians(angulosPosibles[posA % angulosPosibles.length]);
+
         double angulo = Math.toRadians(posA % 360);
-        int cos = (int) Math.cos(angulo);
-        int sin = (int) Math.sin(angulo);
+        //reduzco el angulo al primer cuadrante
         if (angulo > 210){
             angulo = angulo/4;
         } else if (angulo > 180) {
@@ -74,18 +71,20 @@ public class JPanelCircular extends JPanel {
         } else if (angulo > 90) {
             angulo = angulo/2;
         }
+        //calculo la distancia del angulo actual con el de 45 grados y decremento la maxima distancia
         int distanciaEsquina = 0;
         if (angulo < 45){
             distanciaEsquina = (int) (45 - angulo);
         }else {
             distanciaEsquina = (int) (angulo - 45);
         }
-        int decremento = 0;
-        if (distanciaEsquina > 5) {
+        int decremento = distanciaEsquina;
+        /*if (distanciaEsquina > 5) {
              decremento= (distanciaEsquina - 5);
              maxDistancia = maxDistancia - decremento;
-        }
+        }*/
 
+        maxDistancia = maxDistancia - decremento;
         int distanciaX = radio + (posA % (maxDistancia - radio ));
         int distanciaY = radio + (posA % (maxDistancia - radio ));
 
