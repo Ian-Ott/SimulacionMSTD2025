@@ -48,7 +48,7 @@ public class Ventana {
         //frame2.add(panelResultado);
 
 
-        JLabel labelCirculo = new JLabel(new ImageIcon("ar/edu/unlu/mstd/circulo.png"));
+        JLabel labelCirculo = new JLabel(/*new ImageIcon("ar/edu/unlu/mstd/circulo.png")*/);
         labelCirculo.setBounds(0,0,500,500);
 
         JLayeredPane layeredPane1 = new JLayeredPane();
@@ -57,20 +57,22 @@ public class Ventana {
         JPanel panelCuadrado = new JPanel(new BorderLayout());
         panelCuadrado.setBackground(Color.GREEN);
         panelCuadrado.setBounds(50,50,400,400);
-        JPanel panelCirculo = new JPanelCircular(500,Color.CYAN);
+        JPanelCircular panelCirculo = new JPanelCircular(500,Color.CYAN);
         panelCirculo.setOpaque(false);
         //panelCirculo.setBackground(Color.CYAN);
         //panelCirculo.setBounds(100,100,300,300);
         panelCirculo.setBounds(50,50,400,400);
+        panelCirculo.setLayout(null);
 
         //panelCirculo.add(panelCuadrado,BorderLayout.CENTER);
 
         for (int i = 0; i < modelo.getCantEnCirculo(); i++) {
-            JLabel labelA = new JLabel("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+            JLabel labelA = new JLabel("I");
             //labelA.setBounds(0,0,500,500);
             //labelA.setAlignmentX((float) modelo.getProbArrozCirculo(i));
             //labelA.setAlignmentY((float) modelo.getProbArrozCirculo(i));
-            panelCuadrado.add(labelA,BorderLayout.SOUTH);
+            //panelCuadrado.add(labelA,BorderLayout.SOUTH);
+            panelCirculo.addCirculo(labelA,(int)(modelo.getProbArrozCirculo(i) * 1000000000));
         }
         JLayeredPane layeredPane2 = new JLayeredPane();
 
@@ -85,7 +87,8 @@ public class Ventana {
             //x = (int) modelo.getProbArrozCuadrado(i) * (panelCuadrado.getWidth() - labelA.getWidth());
             //y = (int) modelo.getProbArrozCuadrado(i) * (panelCuadrado.getHeight() - labelA.getHeight());
             //labelA.setLocation(x,y);
-            panelCirculo.add(labelA);
+            //panelCirculo.add(labelA);
+            panelCirculo.addFCirculo(labelA,(int)(modelo.getProbArrozCuadrado(i) * 1000000000));
         }
 
 
