@@ -33,19 +33,23 @@ public class Ventana {
             public void actionPerformed(ActionEvent e) {
                 String actual = textCantidadA.getText();
                 Integer valor = 0;
+                boolean error = false;
                 if (actual != null) {
                     try {
                         valor = Integer.parseInt(textCantidadA.getText());
                     } catch (NumberFormatException ex){
                         mostrarError("Los datos ingresados no son validos");
+                        error = true;
                     }
-                    if (valor <= 10000 && valor >= 0) {
-                        modelo = new ModeloMatematico(valor);
-                        modelo.lanzarArroz();
-                        mostrarResultado();
-                    }else{
-                        mostrarError("El limite es entre 0 y 10000");
-                    }
+                    if (!error) {
+                        if (valor <= 10000 && valor >= 0) {
+                            modelo = new ModeloMatematico(valor);
+                            modelo.lanzarArroz();
+                            mostrarResultado();
+                        }else{
+                            mostrarError("El limite es entre 0 y 10000");
+                        }
+                    }else {error = false;}
                 }else {
                     mostrarError("El campo no puede estar vacio");
                 }
