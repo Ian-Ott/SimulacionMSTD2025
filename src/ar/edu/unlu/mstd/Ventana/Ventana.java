@@ -76,7 +76,7 @@ public class Ventana {
         panelResultado.add(txtR);
         panelResultado.setBackground(Color.WHITE);
 
-        JFrame frame2 = new JFrame("Simulacion de arroz");
+        JFrame frame2 = new JFrame("Simulacion Metodo de Montecarlo");
         frame2.setBackground(Color.WHITE);
         frame2.setLayout(new BorderLayout());
         frame2.setSize(1100, 600);
