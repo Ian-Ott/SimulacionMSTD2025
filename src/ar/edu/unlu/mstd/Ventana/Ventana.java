@@ -22,7 +22,7 @@ public class Ventana {
     //CardLayout card = (CardLayout) panelCarta.getLayout();
 
     public Ventana(){
-        frame = new JFrame("Simulacion de arroz");
+        frame = new JFrame("Simulacion Metodo de Montecarlo");
         frame.setSize(1100, 500);
         frame.setResizable(false);
         frame.setVisible(true);
