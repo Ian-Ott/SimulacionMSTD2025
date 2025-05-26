@@ -52,7 +52,7 @@ public class JPanelCircular extends JPanel {
         //int distancia = (posA % radio);
         int x = (int) ((centerX + pos * Math.cos(angulo)));
         int y = (int) ((centerY + pos * Math.sin(angulo)));
-        comp.setBounds(x,y,5,5);
+        comp.setBounds(x,y,5,10);
         return super.add(comp);
     }
     public Component addFCirculo(Component comp,int posA) {
@@ -90,7 +90,7 @@ public class JPanelCircular extends JPanel {
 
         int x = (int) (centerX + distanciaX * Math.cos(angulo));
         int y = (int) (centerY + distanciaY * Math.sin(angulo));
-        comp.setBounds(x,y,10,10);
+        comp.setBounds(x,y,5,10);
         return super.add(comp);
     }
 }

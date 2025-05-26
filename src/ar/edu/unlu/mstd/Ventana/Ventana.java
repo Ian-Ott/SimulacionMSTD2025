@@ -19,7 +19,7 @@ public class Ventana {
     private JPanel panel1;
     private JTextArea SIMULACIONMETODODEMONTECARLOTextArea;
     ModeloMatematico modelo;
-    CardLayout card = (CardLayout) panelCarta.getLayout();
+    //CardLayout card = (CardLayout) panelCarta.getLayout();
 
     public Ventana(){
         frame = new JFrame("Simulacion de arroz");
@@ -61,6 +61,7 @@ public class Ventana {
         double total = modelo.getCantEnCirculo() + modelo.getCantEnCuadrado();
         double cantCir = modelo.getCantEnCirculo();
         double cantC = modelo.getCantEnCuadrado();
+
         JPanel panelResultado = new JPanel();
         TextArea txtR = new TextArea("Los valores resultado son: \n Cantidad de arroz en el cuadrado " + cantC +
                 "\n Cantidad de arroz en el Circulo: " + cantCir +
@@ -71,13 +72,15 @@ public class Ventana {
         txtR.setBackground(Color.white);
         txtR.setForeground(Color.black);
         txtR.setFont(new Font("Calibri", Font.BOLD, 16));
+
         panelResultado.add(txtR);
         panelResultado.setBackground(Color.WHITE);
+
         JFrame frame2 = new JFrame("Simulacion de arroz");
         frame2.setBackground(Color.WHITE);
         frame2.setLayout(new BorderLayout());
         frame2.setSize(1100, 600);
-        //frame2.setResizable(false);
+        frame2.setResizable(false);
         frame2.setVisible(true);
         frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -106,37 +109,38 @@ public class Ventana {
         JLayeredPane layeredPane1 = new JLayeredPane();
         layeredPane1.setBounds(0,0,500,500);
         layeredPane1.add(labelCirculo,0);
+
         JPanel panelCuadrado = new JPanel(new BorderLayout());
         panelCuadrado.setBorder(new LineBorder(Color.black));
-        panelCuadrado.setBackground(Color.GREEN);
+        panelCuadrado.setBackground(Color.BLUE);
         panelCuadrado.setBounds(50,50,400,400);
-        JPanelCircular panelCirculo = new JPanelCircular(500,Color.CYAN);
+        panelCuadrado.setOpaque(true);
+
+        JPanelCircular panelCirculo = new JPanelCircular(500,new Color(255,102,0));
         panelCirculo.setOpaque(false);
-        //panelCirculo.setBackground(Color.CYAN);
-        //panelCirculo.setBounds(100,100,300,300);
         panelCirculo.setBounds(50,50,400,400);
         panelCirculo.setLayout(null);
 
-        //panelCirculo.add(panelCuadrado,BorderLayout.CENTER);
 
         for (int i = 0; i < modelo.getCantEnCirculo(); i++) {
-            JLabel labelA = new JLabel("I");
-            //labelA.setBounds(0,0,500,500);
-            //labelA.setAlignmentX((float) modelo.getProbArrozCirculo(i));
-            //labelA.setAlignmentY((float) modelo.getProbArrozCirculo(i));
-            //panelCuadrado.add(labelA,BorderLayout.SOUTH);
+            JLabel labelA = new JLabel();
+            labelA.setBackground(Color.WHITE);
+            labelA.setOpaque(true);
+            labelA.setBorder(new LineBorder(Color.black));
             panelCirculo.addCirculo(labelA,(int)(modelo.getProbArrozCirculo(i) * 1000000000));
         }
-        JLayeredPane layeredPane2 = new JLayeredPane();
 
+        JLayeredPane layeredPane2 = new JLayeredPane();
         layeredPane2.setBounds(0,0,500,500);
         layeredPane1.add(layeredPane2,1);
         layeredPane2.add(panelCuadrado,1);
-        panelCuadrado.setOpaque(true);
+
         layeredPane2.add(panelCirculo,0);
         for (int i = 0; i < modelo.getCantEnCuadrado(); i++) {
-            JLabel labelA = new JLabel("a");
-
+            JLabel labelA = new JLabel();
+            labelA.setOpaque(true);
+            labelA.setBackground(Color.WHITE);
+            labelA.setBorder(new LineBorder(Color.black));
             panelCirculo.addFCirculo(labelA,(int)(modelo.getProbArrozCuadrado(i) * 1000000000));
         }
 
